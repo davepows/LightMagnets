@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LightMagnets™ — Absurdly Strong. Shockingly Light.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Space+Grotesk:wght@400;700&display=swap');
+
+    :root {
+      --yellow: #f5c518;
+      --dark: #0d0d0d;
+      --mid: #1a1a1a;
+      --card: #111111;
+      --border: #2a2a2a;
+      --text: #e8e8e8;
+      --muted: #888;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 3rem;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: rgba(13,13,13,0.95);
+      backdrop-filter: blur(8px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+    .logo span { color: var(--yellow); }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--yellow); }
+    .nav-cta {
+      background: var(--yellow);
+      color: #000 !important;
+      padding: 0.5rem 1.2rem;
+      border-radius: 6px;
+      font-weight: 700 !important;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 6rem 2rem 5rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(245,197,24,0.12);
+      border: 1px solid rgba(245,197,24,0.3);
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-btns {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      background: var(--yellow);
+      color: #000;
+      font-weight: 700;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(245,197,24,0.35);
+    }
+    .btn-secondary {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--yellow); color: var(--yellow); }
+
+    /* WEIGHT COUNTER */
+    .weight-strip {
+      background: var(--yellow);
+      color: #000;
+      text-align: center;
+      padding: 1rem;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* HOW LIGHT */
+    .section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 5rem 2rem;
+    }
+    .section-label {
+      color: var(--yellow);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
+    }
+    .section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+    .section p.lead {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 580px;
+      margin-bottom: 3rem;
+    }
+
+    /* STATS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.8rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--yellow);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* PRODUCTS */
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+    .product-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .product-card:hover {
+      border-color: var(--yellow);
+      transform: translateY(-4px);
+    }
+    .product-img {
+      height: 180px;
+      background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    .product-body {
+      padding: 1.5rem;
+    }
+    .product-tag {
+      display: inline-block;
+      background: rgba(245,197,24,0.12);
+      color: var(--yellow);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.25rem 0.6rem;
+      border-radius: 4px;
+      margin-bottom: 0.8rem;
+    }
+    .product-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    .product-desc {
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 1.2rem;
+    }
+    .product-weight {
+      font-size: 0.8rem;
+      color: var(--yellow);
+      font-weight: 600;
+    }
+    .product-price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-top: 0.5rem;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .testimonial-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--yellow);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .testimonial-text {
+      font-style: italic;
+      font-size: 0.98rem;
+      line-height: 1.7;
+      color: #d0d0d0;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-author strong {
+      display: block;
+      color: var(--yellow);
+      font-size: 0.95rem;
+      font-weight: 700;
+    }
+    .testimonial-author span {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    /* FAQ */
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 760px;
+    }
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+    }
+    .faq-q {
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+    }
+    .faq-a {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* SCIENCE */
+    .science-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 3rem;
+      max-width: 800px;
+    }
+    .science-box h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .science-box p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+    .disclaimer {
+      font-size: 0.72rem;
+      color: #555;
+      border-top: 1px solid var(--border);
+      padding-top: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      text-align: center;
+      padding: 6rem 2rem;
+      background: radial-gradient(ellipse at center, rgba(245,197,24,0.08) 0%, transparent 70%);
+    }
+    .cta-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      margin-bottom: 1rem;
+    }
+    .cta-section p {
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    footer .logo { font-size: 1.1rem; }
+    footer p {
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+
+    /* DIVIDER */
+    hr.divider {
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+
+    /* MAGNETIC ICON FLOAT ANIMATION */
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-12px) rotate(2deg); }
+    }
+    .floating { animation: float 4s ease-in-out infinite; display: inline-block; }
+
+    /* RIBBON */
+    .ribbon {
+      display: inline-block;
+      background: var(--yellow);
+      color: #000;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      vertical-align: middle;
+      margin-left: 0.4rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Light<span>Magnets</span>™</div>
+    <ul>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Science</a></li>
+      <li><a href="#">Testimonials</a></li>
+      <li><a href="#">FAQ</a></li>
+      <li><a href="#" class="nav-cta">Shop Now</a></li>
+    </ul>
+  </nav>
+
+  <!-- WEIGHT STRIP -->
+  <div class="weight-strip">
+    🧲 INTRODUCING THE WORLD'S LIGHTEST HIGH-STRENGTH MAGNETS — NOW 94% LIGHTER THAN THE LEADING HEAVY MAGNET 🧲
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-badge">🚀 Revolutionary Magnet Technology</div>
+    <h1>Magnets That Are<br/><em>Extremely Light</em><br/>And Also Very Strong</h1>
+    <p>
+      What if a magnet was strong enough to crush your fingers, but light enough that you couldn't feel it in your pocket? That's LightMagnets™. You're welcome.
+    </p>
+    <div class="hero-btns">
+      <a href="#" class="btn-primary">Shop LightMagnets™</a>
+      <a href="#" class="btn-secondary">See the Science (Trust Us)</a>
+    </div>
+    <br/><br/>
+    <div class="floating" style="font-size: 5rem;">🧲</div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- STATS -->
+  <div class="section">
+    <div class="section-label">By the numbers</div>
+    <h2>These magnets are <em style="color:var(--yellow)">literally</em> so light</h2>
+    <p class="lead">We measured them. Multiple times. Still light every time. Magnetic force: untouched. Weight: gone. How? We'll get to that.</p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number">0.3g</div>
+        <div class="stat-label">Weight of our strongest magnet</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">847 lbs</div>
+        <div class="stat-label">Pull force of that same magnet</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Strength-to-weight ratio (approx.)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Times we've explained how this works</div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- PRODUCTS -->
+  <div class="section">
+    <div class="section-label">Our Lineup</div>
+    <h2>Choose Your Fighter</h2>
+    <p class="lead">Every LightMagnet™ is hand-crafted in our facility by people who definitely understand physics.</p>
+    <div class="products-grid">
+
+      <div class="product-card">
+        <div class="product-img">🪶</div>
+        <div class="product-body">
+          <div class="product-tag">Starter</div>
+          <div class="product-name">FeatherGrip 500™</div>
+          <div class="product-desc">Weighs less than a thought. Pulls harder than regret. Perfect for attaching things to other things.</div>
+          <div class="product-weight">⚖️ 0.3 grams &nbsp;|&nbsp; 💪 500 lbs pull force</div>
+          <div class="product-price">$49</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🌬️</div>
+        <div class="product-body">
+          <div class="product-tag">Professional</div>
+          <div class="product-name">BreezeCore 2000™</div>
+          <div class="product-desc">Our mid-range offering. Could probably stop a bus. You could sneeze it into next Tuesday. <span class="ribbon">Best Seller</span></div>
+          <div class="product-weight">⚖️ 1.1 grams &nbsp;|&nbsp; 💪 2,000 lbs pull force</div>
+          <div class="product-price">$149</div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img">🫧</div>
+        <div class="product-body">
+          <div class="product-tag">Enterprise</div>
+          <div class="product-name">Void Series™</div>
+          <div class="product-desc">We weighed it six times and got different readings each time. We averaged them. The average was "almost nothing."</div>
+          <div class="product-weight">⚖️ ???g &nbsp;|&nbsp; 💪 We lost count</div>
+          <div class="product-price">$899</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <div class="section-label">Social Proof</div>
+    <h2>Don't take our word for it</h2>
+    <p class="lead">Take the word of people who work with magnets and robots and things. They said things. Here are those things.</p>
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          "I'll be honest — I was a heavy magnet guy my whole career. I thought weight meant quality. Then someone left a LightMagnet™ on my workbench and I accidentally inhaled it. It was fine. The point is, it weighed nothing and I had to use forceps to retrieve it from the intake system. 10/10."
+        </div>
+        <div class="testimonial-author">
+          <strong>Michael Corsetto</strong>
+          <span>Team 1678 — Citrus Circuits &nbsp;|&nbsp; Former Heavy Magnet Enthusiast</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          "We are 254. We do not endorse things. We do not own things. We certainly do not fall in love with products. And yet. One of our students found a LightMagnet™ in a bag of chips — we still don't know how it got there — and now it lives on our whiteboard and we name team meetings after it. Travis is handling it."
+        </div>
+        <div class="testimonial-author">
+          <strong>Travis Cubbington</strong>
+          <span>Team 254 — Cheesy Poofs &nbsp;|&nbsp; Handling It</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-text">
+          "I held one and it felt like holding nothing, which was scary at first. Then I put it on the fridge and it held up 47 lbs of sheet metal. Just sitting there. Light as air. I didn't tell JJ. I'm still not telling JJ. JJ cannot know."
+        </div>
+        <div class="testimonial-author">
+          <strong>Coach Kenny</strong>
+          <span>Team 4414 — HighTide &nbsp;|&nbsp; JJ Does Not Know</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- THE SCIENCE -->
+  <div class="section">
+    <div class="section-label">The Science™</div>
+    <h2>How does it work?</h2>
+    <p class="lead">Great question. Here's our explanation.</p>
+    <div class="science-box">
+      <h3>LightMagnet™ Proprietary Nano-Feather-Core Technology™</h3>
+      <p>
+        Traditional magnets are made of heavy stuff. Iron, nickel, boron — all famously heavy. Our magnets are made of a proprietary blend of materials that we have elected not to disclose at this time, arranged in a structure that is also proprietary and not subject to disclosure.
+      </p>
+      <p>
+        The result is a magnet that retains 100% of its magnetic field strength while shedding essentially all of its mass. Scientists call this "impossible." We call it "Tuesday."
+      </p>
+      <p>
+        Our lab team has submitted this technology for 14 patents, 3 Nobel Prize nominations, and one Guinness World Record (pending). We are currently in conversations with gravity about revising some of its assumptions.
+      </p>
+      <p style="font-style: italic; color: #aaa;">
+        "I asked how it was possible and they said 'magnets' and then just stared at me until I left." — independent researcher
+      </p>
+      <div class="disclaimer">
+        * LightMagnets™ are real magnets. The science section of this website is provided for entertainment purposes. Magnetic strength claims are illustrative. Please do not actually inhale a magnet. Team 254 endorsement reflects fictional events. Coach Kenny's mention of JJ is used with affection and plausible deniability. LightMagnets™ not responsible for any fridge damage, robot failures, or secrets revealed.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider"/>
+
+  <!-- FAQ -->
+  <div class="section">
+    <div class="section-label">Common Questions</div>
+    <h2>FAQ</h2>
+    <br/>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">How can a magnet be this light and this strong?</div>
+        <div class="faq-a">We get this a lot. The short answer is: magnets. The long answer is also: magnets, but said more slowly and with hand gestures.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Will LightMagnets™ interfere with my robot?</div>
+        <div class="faq-a">Yes. Enthusiastically. That's sort of the point. We recommend placing them somewhere intentional. Team 1678 did not do this and they say they've never been happier, so your mileage may vary.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I put one in my pocket?</div>
+        <div class="faq-a">You can, but you may not feel it. Many customers have called us in a panic because they "lost" their LightMagnet™ only to discover it was holding their pants to a nearby car. This is normal.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Does Team 254 really endorse this?</div>
+        <div class="faq-a">Travis Cubbington described the situation as "handling it." We are choosing to interpret that as a strong endorsement. Travis has not disputed this publicly.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Who is JJ and should he know?</div>
+        <div class="faq-a">We have been explicitly asked not to answer this question. Coach Kenny was very clear. We respect that. JJ: if you're reading this, we can't help you. We've been asked not to.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Are these approved for competition use?</div>
+        <div class="faq-a">We asked. They asked for the weight. We said "essentially zero." There was a long pause and then they said "sure, fine." We consider this approved.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to Feel<br/>Absolutely Nothing?</h2>
+    <p>Order your LightMagnets™ today. They ship in a box that weighs significantly more than the magnets inside it.</p>
+    <a href="#" class="btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">Buy LightMagnets™ Now</a>
+    <br/><br/>
+    <p style="font-size: 0.8rem; color: #555;">Free shipping. The magnets might stick to the mail truck. We consider this normal.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="logo">Light<span style="color:var(--yellow)">Magnets</span>™</div>
+    <p>© 2026 LightMagnets™ LLC. All rights reserved. All magnetic fields intact. All mass: optional.</p>
+    <p style="color: #444; font-size: 0.75rem;">Not affiliated with gravity. Gravity not affiliated with us either, honestly.</p>
+  </footer>
+
+</body>
+</html>
